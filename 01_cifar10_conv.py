@@ -186,4 +186,84 @@ for i in range(10):
 # Accuracy of horse : 83 %
 # Accuracy of  ship : 85 %
 # Accuracy of truck : 64 %
+
+
+#########################
+# For 300 epochs
+Epoch: 10,  loss: 449.185
+Epoch: 20,  loss: 341.252
+Epoch: 30,  loss: 290.084
+Epoch: 40,  loss: 256.611
+Epoch: 50,  loss: 227.288
+Epoch: 60,  loss: 204.560
+Epoch: 70,  loss: 179.661
+Epoch: 80,  loss: 160.357
+Epoch: 90,  loss: 142.084
+Epoch: 100,  loss: 123.785
+Epoch: 110,  loss: 106.753
+Epoch: 120,  loss: 91.248
+Epoch: 130,  loss: 73.023
+Epoch: 140,  loss: 57.974
+Epoch: 150,  loss: 40.626
+Epoch: 160,  loss: 28.594
+Epoch: 170,  loss: 18.084
+Epoch: 180,  loss: 11.281
+Epoch: 190,  loss: 6.815
+Epoch: 200,  loss: 4.499
+Epoch: 210,  loss: 3.258
+Epoch: 220,  loss: 2.487
+Epoch: 230,  loss: 2.060
+Epoch: 240,  loss: 1.735
+Epoch: 250,  loss: 1.511
+Epoch: 260,  loss: 1.358
+Epoch: 270,  loss: 1.233
+Epoch: 280,  loss: 1.144
+Epoch: 290,  loss: 1.072
+Epoch: 300,  loss: 1.019
+Finished Training
+---Saving Model---
+Accuracy of the network on the 10000 test images: 72 %
+Accuracy of plane : 68 %
+Accuracy of   car : 100 %
+Accuracy of  bird : 84 %
+Accuracy of   cat : 40 %
+Accuracy of  deer : 46 %
+Accuracy of   dog : 53 %
+Accuracy of  frog : 61 %
+Accuracy of horse : 83 %
+Accuracy of  ship : 76 %
+Accuracy of truck : 82 %
+
+
+
+
+
+
+
+##########################
+# for 100 epochs
+Epoch: 10,  loss: 445.848
+Epoch: 20,  loss: 342.962
+Epoch: 30,  loss: 289.368
+Epoch: 40,  loss: 257.188
+Epoch: 50,  loss: 229.948
+Epoch: 60,  loss: 206.554
+Epoch: 70,  loss: 183.773
+Epoch: 80,  loss: 163.606
+Epoch: 90,  loss: 145.235
+Epoch: 100,  loss: 128.619
+Finished Training
+---Saving Model---
+Accuracy of the network on the 10000 test images: 69 %
+Accuracy of plane : 68 %
+Accuracy of   car : 84 %
+Accuracy of  bird : 92 %
+Accuracy of   cat : 50 %
+Accuracy of  deer : 61 %
+Accuracy of   dog : 20 %
+Accuracy of  frog : 61 %
+Accuracy of horse : 66 %
+Accuracy of  ship : 80 %
+Accuracy of truck : 70 %
+
 '''

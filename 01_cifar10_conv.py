@@ -75,7 +75,7 @@ optimizer = optim.SGD(net.parameters(), lr=learning_rate, momentum=0.9, weight_d
 
 ########################################################################
 # 4. Train the network
-epochs=100
+epochs=200
 for epoch in range(epochs):  # loop over the dataset multiple times, 10 epochs there
 
     running_loss = 0.0

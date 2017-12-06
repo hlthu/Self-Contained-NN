@@ -99,7 +99,7 @@ cudnn.benchmark = True
 
 import torch.optim as optim
 
-epochs = 100
+epochs = 200
 criterion = nn.CrossEntropyLoss()
 learning_rate = 0.01
 if epochs == 200:

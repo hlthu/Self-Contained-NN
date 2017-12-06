@@ -103,7 +103,7 @@ import torch.optim as optim
 
 epochs = 100
 criterion = nn.CrossEntropyLoss()
-learning_rate = 0.001
+learning_rate = 0.1
 if epochs == 200:
     lr_decay = 0.98
 else:

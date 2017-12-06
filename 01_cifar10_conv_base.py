@@ -92,7 +92,7 @@ net.load_state_dict(model_dict)
 import torch.optim as optim
 
 criterion = nn.CrossEntropyLoss()
-learning_rate = 0.01
+learning_rate = 0.1
 lr_decay = 0.96
 optimizer = optim.SGD([
     {'params': net.module.hidden.parameters() },

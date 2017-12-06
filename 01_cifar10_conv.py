@@ -73,7 +73,7 @@ net = torch.nn.DataParallel(net, device_ids=range(torch.cuda.device_count()))
 import torch.optim as optim
 
 criterion = nn.CrossEntropyLoss()
-learning_rate = 0.01
+learning_rate = 0.1
 lr_decay = 0.96
 optimizer = optim.SGD(net.parameters(), lr=learning_rate, momentum=0.9, weight_decay=5e-4)
 

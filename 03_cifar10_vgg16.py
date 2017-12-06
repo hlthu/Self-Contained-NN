@@ -145,8 +145,8 @@ torch.save({'model': net.state_dict(),
 
 ########################################################################
 # 5. Test the network on the test data
-correct = 0
-total = 0
+correct = 0.0
+total = 0.0
 for data in testloader:
     images, labels = data
     images, labels = images.cuda(), labels.cuda()
@@ -182,27 +182,7 @@ for i in range(10):
 
 '''
 ############### 100 epochs ##################
-Epoch: 10,  loss: 18.692
-Epoch: 20,  loss: 0.270
-Epoch: 30,  loss: 0.098
-Epoch: 40,  loss: 0.075
-Epoch: 50,  loss: 0.080
-Epoch: 60,  loss: 0.074
-Epoch: 70,  loss: 0.076
-Epoch: 80,  loss: 0.076
-Epoch: 90,  loss: 0.079
-Epoch: 100,  loss: 0.079
-Accuracy of the network on the 10000 test images: 85.00 %
-Accuracy of plane : 93.75 %
-Accuracy of   car : 92.31 %
-Accuracy of  bird : 100.00 %
-Accuracy of   cat : 59.09 %
-Accuracy of  deer : 84.62 %
-Accuracy of   dog : 66.67 %
-Accuracy of  frog : 77.78 %
-Accuracy of horse : 91.67 %
-Accuracy of  ship : 90.48 %
-Accuracy of truck : 88.24 %
+
 
 ################# 200 epochs #####################
 

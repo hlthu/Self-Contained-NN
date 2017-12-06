@@ -32,10 +32,10 @@ from torch.autograd import Variable
 import torch.nn as nn
 import torch.nn.functional as F
 
-
-class Net(nn.Module):
+## This is the define of the pretrained CONV net
+class NewNet(nn.Module):
     def __init__(self):
-        super(Net, self).__init__()
+        super(NewNet, self).__init__()
         self.pool = nn.MaxPool2d(2, 2)
         self.conv1 = nn.Conv2d(3, 64, 3, padding=1)
         self.bn1 = nn.BatchNorm2d(64)
@@ -45,9 +45,11 @@ class Net(nn.Module):
         self.bn3 = nn.BatchNorm2d(256)
         self.conv4 = nn.Conv2d(256, 256, 3, padding=1)
         self.bn4 = nn.BatchNorm2d(256)
-        self.fc1 = nn.Linear(256 * 2 * 2, 256)
-        self.fc2 = nn.Linear(256, 64)
-        self.fc3 = nn.Linear(64, 10)
+        ### This layer is going to be replaced by self-contain
+        self.hidden = nn.Linear(256 * 2 * 2, 256 * 2 * 2)
+        ####
+        self.new_fc2 = nn.Linear(256 * 2 * 2, 128)
+        self.new_fc3 = nn.Linear(128, 10)
 
     def forward(self, x):
         x = self.pool(self.bn1(F.relu(self.conv1(x))))
@@ -55,17 +57,34 @@ class Net(nn.Module):
         x = self.pool(self.bn3(F.relu(self.conv3(x))))
         x = self.pool(self.bn4(F.relu(self.conv4(x))))
         x = x.view(-1, 256 * 2 * 2)
-        x = F.relu(self.fc1(x))
-        x = F.relu(self.fc2(x))
-        x = self.fc3(x)
+        ####
+        x = F.relu(self.hidden(x))
+        ####
+        x = F.relu(self.new_fc2(x))
+        x = self.new_fc3(x)
         return x
 
+########################################################################
+## load the saved conv model 
+net = NewNet()
+checkpoint = torch.load('models/conv_100epochs.mdl')
+pretrain_dict = checkpoint['model']
 
-net = Net()
+## Let the conv layers not update
+for param in net.parameters():
+    param.requires_grad = False
+net.hidden = nn.Linear(256 * 2 * 2, 256 * 2 * 2)
+net.new_fc2 = nn.Linear(256 * 2 * 2, 128)
+net.new_fc3 = nn.Linear(128, 10)
+
 # Sent the model to GPU
 net.cuda()
 # parallel
 net = torch.nn.DataParallel(net, device_ids=range(torch.cuda.device_count()))
+model_dict = net.state_dict()
+pretrain_dict = {k: v for k, v in pretrain_dict.items() if k in model_dict}
+model_dict.update(pretrain_dict)
+net.load_state_dict(model_dict)
 
 ########################################################################
 # 3. Define a Loss function and optimizer
@@ -75,11 +94,16 @@ import torch.optim as optim
 criterion = nn.CrossEntropyLoss()
 learning_rate = 0.01
 lr_decay = 0.96
-optimizer = optim.SGD(net.parameters(), lr=learning_rate, momentum=0.9, weight_decay=5e-4)
+optimizer = optim.SGD([
+    {'params': net.module.hidden.parameters() },
+    {'params': net.module.new_fc2.parameters() },
+    {'params': net.module.new_fc3.parameters() }
+    ], lr=learning_rate, momentum=0.9, weight_decay=5e-4)
 
 ########################################################################
 # 4. Train the network
-epochs=100
+epochs = 100
+# epochs=checkpoint['epochs']
 for epoch in range(epochs):  # loop over the dataset multiple times, 10 epochs there
 
     running_loss = 0.0
@@ -105,21 +129,16 @@ for epoch in range(epochs):  # loop over the dataset multiple times, 10 epochs t
     if epoch % 10 == 9:
         print('Epoch: %d,  loss: %.3f' %(epoch + 1, running_loss))
     learning_rate *= lr_decay
-    optimizer = optim.SGD(net.parameters(), lr=learning_rate, momentum=0.9, weight_decay=5e-4)
+    optimizer = optim.SGD([
+        {'params': net.module.hidden.parameters() },
+        {'params': net.module.new_fc2.parameters() },
+        {'params': net.module.new_fc3.parameters() }
+        ], lr=learning_rate, momentum=0.9, weight_decay=5e-4)
 
 print('Finished Training')
 
-
-## save the model
-print('---Saving Model---')
-torch.save({'model': net.state_dict(),
-            'epochs': epochs, 
-            }, 'models/conv_{0}epochs.mdl'.format(epochs))
-
 ########################################################################
 # 5. Test the network on the test data
-
-
 correct = 0.0
 total = 0.0
 for data in testloader:
@@ -151,32 +170,33 @@ for data in testloader:
 
 
 for i in range(10):
-    print('Accuracy of %5s : %2d %%' % (
+    print('Accuracy of %5s : %.2f %%' % (
         classes[i], 100 * class_correct[i] / class_total[i]))
 
 
 '''
-################## 
-# training log
-Epoch: 10,  loss: 15.122
-Epoch: 20,  loss: 0.331
-Epoch: 30,  loss: 0.218
-Epoch: 40,  loss: 0.224
-Epoch: 50,  loss: 0.207
-Epoch: 60,  loss: 0.207
-Epoch: 70,  loss: 0.206
-Epoch: 80,  loss: 0.216
-Epoch: 90,  loss: 0.203
-Epoch: 100,  loss: 0.199
-Accuracy of the network on the 10000 test images: 79 %
-Accuracy of plane : 81 %
-Accuracy of   car : 84 %
-Accuracy of  bird : 84 %
-Accuracy of   cat : 59 %
-Accuracy of  deer : 69 %
-Accuracy of   dog : 53 %
-Accuracy of  frog : 66 %
-Accuracy of horse : 91 %
-Accuracy of  ship : 90 %
-Accuracy of truck : 82 %
+################ 
+# Training Log
+Epoch: 10,  loss: 0.514
+Epoch: 20,  loss: 0.441
+Epoch: 30,  loss: 0.386
+Epoch: 40,  loss: 0.327
+Epoch: 50,  loss: 0.341
+Epoch: 60,  loss: 0.342
+Epoch: 70,  loss: 0.329
+Epoch: 80,  loss: 0.331
+Epoch: 90,  loss: 0.327
+Epoch: 100,  loss: 0.323
+Finished Training
+Accuracy of the network on the 10000 test images: 79.00 %
+Accuracy of plane : 87.50 %
+Accuracy of   car : 84.62 %
+Accuracy of  bird : 84.62 %
+Accuracy of   cat : 59.09 %
+Accuracy of  deer : 69.23 %
+Accuracy of   dog : 53.33 %
+Accuracy of  frog : 72.22 %
+Accuracy of horse : 100.00 %
+Accuracy of  ship : 90.48 %
+Accuracy of truck : 76.47 %
 '''

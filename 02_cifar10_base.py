@@ -98,7 +98,8 @@ optimizer = optim.SGD(net.parameters(), lr=learning_rate, momentum=0.9, weight_d
 
 ########################################################################
 # 4. Train the network
-epochs=checkpoint['epochs']
+epochs = 200
+# epochs=checkpoint['epochs']
 for epoch in range(epochs):  # loop over the dataset multiple times, 10 epochs there
 
     running_loss = 0.0
@@ -170,6 +171,8 @@ for i in range(10):
 '''
 ### the training log
 
+### using the model of 200 epochs and retrain 200 epochs
+
 Epoch: 10,  loss: 66.747
 Epoch: 20,  loss: 23.483
 Epoch: 30,  loss: 10.506
@@ -190,9 +193,6 @@ Epoch: 170,  loss: 0.476
 Epoch: 180,  loss: 0.474
 Epoch: 190,  loss: 0.494
 Epoch: 200,  loss: 0.484
-
-
-### accuracy report
 Accuracy of the network on the 10000 test images: 73 %
 Accuracy of plane : 81 %
 Accuracy of   car : 84 %
@@ -204,4 +204,68 @@ Accuracy of  frog : 61 %
 Accuracy of horse : 66 %
 Accuracy of  ship : 80 %
 Accuracy of truck : 82 %
+
+
+
+
+####### using the model of 300 epochs and retrain 100 epochs
+Epoch: 10,  loss: 73.077
+Epoch: 20,  loss: 22.779
+Epoch: 30,  loss: 10.092
+Epoch: 40,  loss: 4.786
+Epoch: 50,  loss: 2.695
+Epoch: 60,  loss: 2.078
+Epoch: 70,  loss: 1.594
+Epoch: 80,  loss: 1.170
+Epoch: 90,  loss: 0.954
+Epoch: 100,  loss: 0.799
+Finished Training
+Accuracy of the network on the 10000 test images: 72 %
+Accuracy of plane : 68 %
+Accuracy of   car : 92 %
+Accuracy of  bird : 92 %
+Accuracy of   cat : 31 %
+Accuracy of  deer : 38 %
+Accuracy of   dog : 40 %
+Accuracy of  frog : 66 %
+Accuracy of horse : 83 %
+Accuracy of  ship : 80 %
+Accuracy of truck : 88 %
+
+ ######## using the model of 300 epochs and retrain 200 epochs
+
+Epoch: 10,  loss: 72.022
+Epoch: 20,  loss: 23.131
+Epoch: 30,  loss: 9.501
+Epoch: 40,  loss: 4.737
+Epoch: 50,  loss: 2.921
+Epoch: 60,  loss: 1.976
+Epoch: 70,  loss: 1.469
+Epoch: 80,  loss: 1.084
+Epoch: 90,  loss: 0.854
+Epoch: 100,  loss: 0.849
+Epoch: 110,  loss: 0.652
+Epoch: 120,  loss: 0.599
+Epoch: 130,  loss: 0.579
+Epoch: 140,  loss: 0.665
+Epoch: 150,  loss: 0.467
+Epoch: 160,  loss: 0.460
+Epoch: 170,  loss: 0.461
+Epoch: 180,  loss: 0.498
+Epoch: 190,  loss: 0.477
+Epoch: 200,  loss: 0.404
+Finished Training
+Accuracy of the network on the 10000 test images: 73 %
+Accuracy of plane : 62 %
+Accuracy of   car : 84 %
+Accuracy of  bird : 84 %
+Accuracy of   cat : 40 %
+Accuracy of  deer : 46 %
+Accuracy of   dog : 53 %
+Accuracy of  frog : 61 %
+Accuracy of horse : 75 %
+Accuracy of  ship : 80 %
+Accuracy of truck : 94 %
+
+
 '''

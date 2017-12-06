@@ -34,9 +34,9 @@ import torch.nn.functional as F
 import torch.backends.cudnn as cudnn
 
 
-class Net(nn.Module):
+class VGG11(nn.Module):
     def __init__(self):
-        super(Net, self).__init__()
+        super(VGG11, self).__init__()
         self.mpool = nn.MaxPool2d(2, 2)
         self.conv1 = nn.Conv2d(3, 64, 3, padding=1)
         self.bn1 = nn.BatchNorm2d(64)
@@ -70,7 +70,7 @@ class Net(nn.Module):
         return x
 
 
-net = Net()
+net = VGG11()
 # Sent the model to GPU
 net.cuda()
 # parallel
@@ -174,5 +174,59 @@ for i in range(10):
 
 
 '''
+############### 100 epochs ##################
+Epoch: 10,  loss: 13.837
+Epoch: 20,  loss: 0.198
+Epoch: 30,  loss: 0.122
+Epoch: 40,  loss: 0.116
+Epoch: 50,  loss: 0.111
+Epoch: 60,  loss: 0.120
+Epoch: 70,  loss: 0.103
+Epoch: 80,  loss: 0.103
+Epoch: 90,  loss: 0.103
+Epoch: 100,  loss: 0.111
+Accuracy of the network on the 10000 test images: 82.00 %
+Accuracy of plane : 81.25 %
+Accuracy of   car : 100.00 %
+Accuracy of  bird : 92.31 %
+Accuracy of   cat : 40.91 %
+Accuracy of  deer : 84.62 %
+Accuracy of   dog : 66.67 %
+Accuracy of  frog : 66.67 %
+Accuracy of horse : 91.67 %
+Accuracy of  ship : 95.24 %
+Accuracy of truck : 88.24 %
 
+################# 200 epochs #####################
+Epoch: 10,  loss: 17.666
+Epoch: 20,  loss: 0.173
+Epoch: 30,  loss: 0.113
+Epoch: 40,  loss: 0.102
+Epoch: 50,  loss: 0.108
+Epoch: 60,  loss: 0.113
+Epoch: 70,  loss: 0.120
+Epoch: 80,  loss: 0.121
+Epoch: 90,  loss: 0.125
+Epoch: 100,  loss: 0.130
+Epoch: 110,  loss: 0.127
+Epoch: 120,  loss: 0.129
+Epoch: 130,  loss: 0.139
+Epoch: 140,  loss: 0.139
+Epoch: 150,  loss: 0.133
+Epoch: 160,  loss: 0.129
+Epoch: 170,  loss: 0.135
+Epoch: 180,  loss: 0.129
+Epoch: 190,  loss: 0.139
+Epoch: 200,  loss: 0.133
+Accuracy of the network on the 10000 test images: 83.00 %
+Accuracy of plane : 87.50 %
+Accuracy of   car : 100.00 %
+Accuracy of  bird : 92.31 %
+Accuracy of   cat : 50.00 %
+Accuracy of  deer : 84.62 %
+Accuracy of   dog : 66.67 %
+Accuracy of  frog : 77.78 %
+Accuracy of horse : 91.67 %
+Accuracy of  ship : 90.48 %
+Accuracy of truck : 94.12 %
 '''

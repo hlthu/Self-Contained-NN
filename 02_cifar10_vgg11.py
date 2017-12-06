@@ -119,20 +119,14 @@ for epoch in range(epochs):  # loop over the dataset multiple times, 10 epochs t
     # print every epochs
     if epoch % 10 == 9:
         print('Epoch: %d,  loss: %.3f' %(epoch + 1, running_loss))
-        torch.save({'model': net.state_dict(),
-            'epochs': epoch+1, 
-            }, 'models/vgg11_{0}epochs.mdl'.format(epoch+1))
     learning_rate *= lr_decay
     optimizer = optim.SGD(net.parameters(), lr=learning_rate, momentum=0.9, weight_decay=5e-4)
 
 print('Finished Training')
 
-
-## save the model
-# print('---Saving Model---')
-# torch.save({'model': net.state_dict(),
-#             'epochs': epochs, 
-#             }, 'models/vgg11_base_{0}epochs.tar'.format(epochs))
+torch.save({'model': net.state_dict(),
+            'epochs': epochs, 
+            }, 'models/vgg11_{0}epochs.mdl'.format(epochs))
 
 ########################################################################
 # 5. Test the network on the test data

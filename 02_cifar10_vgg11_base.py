@@ -185,9 +185,6 @@ for i in range(10):
 
 
 '''
-############### using the model trained with 100 epochs ##################
-
-
 ############### using the model trained with 200 epochs ##################
 
 '''

@@ -177,26 +177,27 @@ for i in range(10):
 '''
 ################ 
 # Training Log
-Epoch: 10,  loss: 0.514
-Epoch: 20,  loss: 0.441
-Epoch: 30,  loss: 0.386
-Epoch: 40,  loss: 0.327
-Epoch: 50,  loss: 0.341
-Epoch: 60,  loss: 0.342
-Epoch: 70,  loss: 0.329
-Epoch: 80,  loss: 0.331
-Epoch: 90,  loss: 0.327
-Epoch: 100,  loss: 0.323
+Epoch: 10,  loss: 34.179
+Epoch: 20,  loss: 8.675
+Epoch: 30,  loss: 0.264
+Epoch: 40,  loss: 0.301
+Epoch: 50,  loss: 0.271
+Epoch: 60,  loss: 0.255
+Epoch: 70,  loss: 0.244
+Epoch: 80,  loss: 0.240
+Epoch: 90,  loss: 0.236
+Epoch: 100,  loss: 0.234
 Finished Training
-Accuracy of the network on the 10000 test images: 79.00 %
-Accuracy of plane : 87.50 %
-Accuracy of   car : 84.62 %
-Accuracy of  bird : 84.62 %
-Accuracy of   cat : 59.09 %
-Accuracy of  deer : 69.23 %
-Accuracy of   dog : 53.33 %
-Accuracy of  frog : 72.22 %
-Accuracy of horse : 100.00 %
-Accuracy of  ship : 90.48 %
-Accuracy of truck : 76.47 %
+---Saving Model---
+Accuracy of the network on the 10000 test images: 82.48 %
+Accuracy of plane : 75 %
+Accuracy of   car : 92 %
+Accuracy of  bird : 76 %
+Accuracy of   cat : 59 %
+Accuracy of  deer : 61 %
+Accuracy of   dog : 66 %
+Accuracy of  frog : 72 %
+Accuracy of horse : 91 %
+Accuracy of  ship : 90 %
+Accuracy of truck : 76 %
 '''

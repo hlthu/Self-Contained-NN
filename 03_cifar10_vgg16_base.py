@@ -201,5 +201,26 @@ for i in range(10):
 
 '''
 ############### using the model trained with 200 epochs ##################
-
+Epoch: 10,  loss: 0.143
+Epoch: 20,  loss: 0.149
+Epoch: 30,  loss: 0.149
+Epoch: 40,  loss: 0.148
+Epoch: 50,  loss: 0.148
+Epoch: 60,  loss: 0.148
+Epoch: 70,  loss: 0.148
+Epoch: 80,  loss: 0.148
+Epoch: 90,  loss: 0.148
+Epoch: 100,  loss: 0.148
+Finished Training
+Accuracy of the network on the 10000 test images: 88.19 %
+Accuracy of plane : 75.00 %
+Accuracy of   car : 100.00 %
+Accuracy of  bird : 100.00 %
+Accuracy of   cat : 63.64 %
+Accuracy of  deer : 92.31 %
+Accuracy of   dog : 73.33 %
+Accuracy of  frog : 77.78 %
+Accuracy of horse : 83.33 %
+Accuracy of  ship : 90.48 %
+Accuracy of truck : 100.00 %
 '''

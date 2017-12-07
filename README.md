@@ -31,4 +31,4 @@ Training logs and accuracy reports are attached in the tail of the files.
 
 ## Reference
 
-[]()
+[Train CIFAR10 with PyTorch](https://github.com/hlthu/pytorch-cifar)

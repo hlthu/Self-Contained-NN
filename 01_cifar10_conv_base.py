@@ -67,7 +67,7 @@ class NewNet(nn.Module):
 ########################################################################
 ## load the saved conv model 
 net = NewNet()
-checkpoint = torch.load('models/conv_100epochs.mdl')
+checkpoint = torch.load('models/conv_200epochs.mdl')
 pretrain_dict = checkpoint['model']
 
 ## Let the conv layers not update
@@ -91,9 +91,10 @@ net.load_state_dict(model_dict)
 
 import torch.optim as optim
 
+epochs = 50
 criterion = nn.CrossEntropyLoss()
-learning_rate = 0.1
-lr_decay = 0.96
+learning_rate = 0.01
+lr_decay = 0.95
 optimizer = optim.SGD([
     {'params': net.module.hidden.parameters() },
     {'params': net.module.new_fc2.parameters() },
@@ -102,8 +103,6 @@ optimizer = optim.SGD([
 
 ########################################################################
 # 4. Train the network
-epochs = 100
-# epochs=checkpoint['epochs']
 for epoch in range(epochs):  # loop over the dataset multiple times, 10 epochs there
 
     running_loss = 0.0
@@ -176,27 +175,21 @@ for i in range(10):
 
 '''
 ################ 
-# Training Log
-Epoch: 10,  loss: 0.325
-Epoch: 20,  loss: 0.323
-Epoch: 30,  loss: 0.326
-Epoch: 40,  loss: 0.325
-Epoch: 50,  loss: 0.316
-Epoch: 60,  loss: 0.317
-Epoch: 70,  loss: 0.310
-Epoch: 80,  loss: 0.318
-Epoch: 90,  loss: 0.318
-Epoch: 100,  loss: 0.321
+Epoch: 10,  loss: 0.335
+Epoch: 20,  loss: 0.263
+Epoch: 30,  loss: 0.248
+Epoch: 40,  loss: 0.239
+Epoch: 50,  loss: 0.248
 Finished Training
-Accuracy of the network on the 10000 test images: 82.30 %
-Accuracy of plane : 75.00 %
-Accuracy of   car : 92.31 %
-Accuracy of  bird : 76.92 %
-Accuracy of   cat : 59.09 %
-Accuracy of  deer : 61.54 %
-Accuracy of   dog : 73.33 %
+Accuracy of the network on the 10000 test images: 82.50 %
+Accuracy of plane : 87.50 %
+Accuracy of   car : 100.00 %
+Accuracy of  bird : 92.31 %
+Accuracy of   cat : 63.64 %
+Accuracy of  deer : 69.23 %
+Accuracy of   dog : 60.00 %
 Accuracy of  frog : 72.22 %
 Accuracy of horse : 91.67 %
-Accuracy of  ship : 90.48 %
-Accuracy of truck : 82.35 %
+Accuracy of  ship : 95.24 %
+Accuracy of truck : 88.24 %
 '''

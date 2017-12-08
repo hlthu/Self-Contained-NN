@@ -92,8 +92,7 @@ class NewNet(nn.Module):
 ########################################################################
 ## load the saved conv model 
 net = NewNet()
-# checkpoint = torch.load('models/vgg16_100epochs.mdl')
-checkpoint = torch.load('models/vgg16_200epochs.mdl')
+checkpoint = torch.load('models/vgg16_300epochs.mdl')
 pretrain_dict = checkpoint['model']
 
 ## Let the conv layers doesn't update
@@ -116,13 +115,10 @@ net.load_state_dict(model_dict)
 
 import torch.optim as optim
 
-epochs = 100
+epochs = 50
 criterion = nn.CrossEntropyLoss()
-learning_rate = 0.1
-if epochs == 200:
-    lr_decay = 0.98
-else:
-    lr_decay = 0.96   #### 0.98 for 200 epochs, 0.96 for 100 epochs
+learning_rate = 0.01
+lr_decay = 0.95
 optimizer = optim.SGD([
     {'params': net.module.hidden.parameters() },
     {'params': net.module.new_fc.parameters() }
@@ -201,26 +197,21 @@ for i in range(10):
 
 '''
 ############### using the model trained with 200 epochs ##################
-Epoch: 10,  loss: 0.143
-Epoch: 20,  loss: 0.149
-Epoch: 30,  loss: 0.149
-Epoch: 40,  loss: 0.148
-Epoch: 50,  loss: 0.148
-Epoch: 60,  loss: 0.148
-Epoch: 70,  loss: 0.148
-Epoch: 80,  loss: 0.148
-Epoch: 90,  loss: 0.148
-Epoch: 100,  loss: 0.148
+Epoch: 10,  loss: 0.211
+Epoch: 20,  loss: 0.170
+Epoch: 30,  loss: 0.160
+Epoch: 40,  loss: 0.157
+Epoch: 50,  loss: 0.155
 Finished Training
-Accuracy of the network on the 10000 test images: 88.19 %
-Accuracy of plane : 75.00 %
+Accuracy of the network on the 10000 test images: 88.57 %
+Accuracy of plane : 93.75 %
 Accuracy of   car : 100.00 %
 Accuracy of  bird : 100.00 %
-Accuracy of   cat : 63.64 %
-Accuracy of  deer : 92.31 %
+Accuracy of   cat : 68.18 %
+Accuracy of  deer : 76.92 %
 Accuracy of   dog : 73.33 %
 Accuracy of  frog : 77.78 %
 Accuracy of horse : 83.33 %
-Accuracy of  ship : 90.48 %
-Accuracy of truck : 100.00 %
+Accuracy of  ship : 80.95 %
+Accuracy of truck : 94.12 %
 '''

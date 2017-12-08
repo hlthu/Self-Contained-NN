@@ -74,12 +74,17 @@ import torch.optim as optim
 
 criterion = nn.CrossEntropyLoss()
 learning_rate = 0.1
-lr_decay = 0.96
+epochs=200
+if epochs == 200:
+    lr_decay = 0.976
+elif epochs == 300:
+    lr_decay = 0.984
+else:
+    lr_decay = 0.95
 optimizer = optim.SGD(net.parameters(), lr=learning_rate, momentum=0.9, weight_decay=5e-4)
 
 ########################################################################
 # 4. Train the network
-epochs=100
 for epoch in range(epochs):  # loop over the dataset multiple times, 10 epochs there
 
     running_loss = 0.0
@@ -157,29 +162,38 @@ for i in range(10):
 
 '''
 ################## 
-# training log
-Epoch: 10,  loss: 34.179
-Epoch: 20,  loss: 8.675
-Epoch: 30,  loss: 0.264
-Epoch: 40,  loss: 0.301
-Epoch: 50,  loss: 0.271
-Epoch: 60,  loss: 0.255
-Epoch: 70,  loss: 0.244
-Epoch: 80,  loss: 0.240
-Epoch: 90,  loss: 0.236
-Epoch: 100,  loss: 0.234
+Epoch: 10,  loss: 39.646
+Epoch: 20,  loss: 13.601
+Epoch: 30,  loss: 8.649
+Epoch: 40,  loss: 2.477
+Epoch: 50,  loss: 0.258
+Epoch: 60,  loss: 0.252
+Epoch: 70,  loss: 0.245
+Epoch: 80,  loss: 0.224
+Epoch: 90,  loss: 0.214
+Epoch: 100,  loss: 0.205
+Epoch: 110,  loss: 0.200
+Epoch: 120,  loss: 0.197
+Epoch: 130,  loss: 0.193
+Epoch: 140,  loss: 0.189
+Epoch: 150,  loss: 0.189
+Epoch: 160,  loss: 0.184
+Epoch: 170,  loss: 0.182
+Epoch: 180,  loss: 0.181
+Epoch: 190,  loss: 0.180
+Epoch: 200,  loss: 0.180
 Finished Training
 ---Saving Model---
-Accuracy of the network on the 10000 test images: 82.48 %
-Accuracy of plane : 75 %
-Accuracy of   car : 92 %
-Accuracy of  bird : 76 %
+Accuracy of the network on the 10000 test images: 83.17 %
+Accuracy of plane : 87 %
+Accuracy of   car : 100 %
+Accuracy of  bird : 92 %
 Accuracy of   cat : 59 %
-Accuracy of  deer : 61 %
-Accuracy of   dog : 66 %
-Accuracy of  frog : 72 %
-Accuracy of horse : 91 %
-Accuracy of  ship : 90 %
-Accuracy of truck : 76 %
+Accuracy of  deer : 69 %
+Accuracy of   dog : 60 %
+Accuracy of  frog : 77 %
+Accuracy of horse : 83 %
+Accuracy of  ship : 95 %
+Accuracy of truck : 88 %
 
 '''

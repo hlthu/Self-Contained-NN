@@ -84,13 +84,15 @@ cudnn.benchmark = True
 
 import torch.optim as optim
 
-epochs = 200
+epochs = 300
 criterion = nn.CrossEntropyLoss()
 learning_rate = 0.1
 if epochs == 200:
-    lr_decay = 0.98
+    lr_decay = 0.976
+elif epochs == 300:
+    lr_decay = 0.984
 else:
-    lr_decay = 0.96   #### 0.98 for 200 epochs, 0.96 for 100 epochs
+    lr_decay = 0.95
 optimizer = optim.SGD(net.parameters(), lr=learning_rate, momentum=0.9, weight_decay=5e-4)
 
 ########################################################################
@@ -169,36 +171,46 @@ for i in range(10):
 
 '''
 ############### 200 epochs ##################
-Epoch: 10,  loss: 65.705
-Epoch: 20,  loss: 21.942
-Epoch: 30,  loss: 11.888
-Epoch: 40,  loss: 6.616
-Epoch: 50,  loss: 5.152
-Epoch: 60,  loss: 2.024
-Epoch: 70,  loss: 1.575
-Epoch: 80,  loss: 0.184
-Epoch: 90,  loss: 0.219
-Epoch: 100,  loss: 0.215
-Epoch: 110,  loss: 0.215
-Epoch: 120,  loss: 0.221
-Epoch: 130,  loss: 0.213
-Epoch: 140,  loss: 0.209
-Epoch: 150,  loss: 0.205
-Epoch: 160,  loss: 0.204
-Epoch: 170,  loss: 0.207
-Epoch: 180,  loss: 0.207
-Epoch: 190,  loss: 0.206
+Epoch: 10,  loss: 61.900
+Epoch: 20,  loss: 24.288
+Epoch: 30,  loss: 15.763
+Epoch: 40,  loss: 13.008
+Epoch: 50,  loss: 11.069
+Epoch: 60,  loss: 6.402
+Epoch: 70,  loss: 3.485
+Epoch: 80,  loss: 2.490
+Epoch: 90,  loss: 0.151
+Epoch: 100,  loss: 0.211
+Epoch: 110,  loss: 0.218
+Epoch: 120,  loss: 0.215
+Epoch: 130,  loss: 0.215
+Epoch: 140,  loss: 0.210
+Epoch: 150,  loss: 0.209
+Epoch: 160,  loss: 0.210
+Epoch: 170,  loss: 0.205
+Epoch: 180,  loss: 0.206
+Epoch: 190,  loss: 0.207
 Epoch: 200,  loss: 0.204
+Epoch: 210,  loss: 0.208
+Epoch: 220,  loss: 0.206
+Epoch: 230,  loss: 0.204
+Epoch: 240,  loss: 0.206
+Epoch: 250,  loss: 0.206
+Epoch: 260,  loss: 0.203
+Epoch: 270,  loss: 0.205
+Epoch: 280,  loss: 0.203
+Epoch: 290,  loss: 0.204
+Epoch: 300,  loss: 0.205
 Finished Training
-Accuracy of the network on the 10000 test images: 86.40 %
+Accuracy of the network on the 10000 test images: 86.39 %
 Accuracy of plane : 87.50 %
 Accuracy of   car : 100.00 %
-Accuracy of  bird : 84.62 %
+Accuracy of  bird : 100.00 %
 Accuracy of   cat : 68.18 %
-Accuracy of  deer : 84.62 %
-Accuracy of   dog : 60.00 %
-Accuracy of  frog : 77.78 %
-Accuracy of horse : 83.33 %
+Accuracy of  deer : 92.31 %
+Accuracy of   dog : 80.00 %
+Accuracy of  frog : 72.22 %
+Accuracy of horse : 91.67 %
 Accuracy of  ship : 100.00 %
-Accuracy of truck : 82.35 %
+Accuracy of truck : 88.24 %
 '''

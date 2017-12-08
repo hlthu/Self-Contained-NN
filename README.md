@@ -6,9 +6,9 @@ Training logs and accuracy reports are attached in the tail of the files.
 
 ### 4-Layers Convolution Networks
 
-* `01_cifar10_conv.py`: Train and save a conv network with 4 conv layers, which will be used as a feature extractor. The final accuracy is about 82.48% for 100 epochs.
+* `01_cifar10_conv.py`: Train and save a conv network with 4 conv layers, which will be used as a feature extractor. The final accuracy is about 83.17% for 100 epochs.
 
-* `01_cifar10_conv_base.py`: Define a new model with the same conv layers as `01_cifar10_conv.py`, but with new FC layers. The conv layers are fixed and not updated when training, for 100 epochs, the result is about 82.30%.
+* `01_cifar10_conv_base.py`: Define a new model with the same conv layers as `01_cifar10_conv.py`, but with new FC layers. The conv layers are fixed and not updated when training, for 100 epochs, the result is about 82.50%.
 
 ### VGG-11 with 8 Conv Layers
 

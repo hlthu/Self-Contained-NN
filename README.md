@@ -22,7 +22,7 @@ Training logs and accuracy reports are attached in the tail of the files.
 
 * `03_cifar10_vgg16_base.py`: The same as `02_cifar10_vgg11_base.py`, but using VGG-16's conv layers as a feature extractor. The accuracy is also 88.57%.
 
-* `03_cifar10_vgg16_test.py`: The same as `03_cifar10_vgg16.py`, but using different learning rate schedule, 0.1 for [1,150] epochs, 0.01 for [151, 250] epochs, 0.001 for [251, 350] epochs, trained for 350 epochs with mini-batch 256. The accuracy is 88.83%. The learning rate schedule is the same as in Ref[1].
+* `03_cifar10_vgg16_test.py`: The same as `03_cifar10_vgg16.py`, but using different learning rate schedule, 0.1 for [1,150] epochs, 0.01 for [151, 250] epochs, 0.001 for [251, 350] epochs, trained for 350 epochs with mini-batch 256. The accuracy is 88.83%. The learning rate schedule is the same as in Ref[1]. <font color=#DC143C> This shows that epochs and lr schedule is not a big problem, maybe the mini-batch or preprocessing.</font>
 
 ## To Do
 

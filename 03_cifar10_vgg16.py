@@ -7,17 +7,25 @@ import torchvision.transforms as transforms
 ########################################################################
 # 1. Loading and normalizing CIFAR10
 
-transform = transforms.Compose(
-    [transforms.ToTensor(),
-     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+transform_train = transforms.Compose([
+    transforms.RandomCrop(32, padding=4),
+    transforms.RandomHorizontalFlip(),
+    transforms.ToTensor(),
+    transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
+])
+
+transform_test = transforms.Compose([
+    transforms.ToTensor(),
+    transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
+])
 
 trainset = torchvision.datasets.CIFAR10(root='./data', train=True,
-                                        download=True, transform=transform)
+                                        download=True, transform=transform_train)
 trainloader = torch.utils.data.DataLoader(trainset, batch_size=256,
                                           shuffle=True, num_workers=2)
 
 testset = torchvision.datasets.CIFAR10(root='./data', train=False,
-                                       download=True, transform=transform)
+                                       download=True, transform=transform_test)
 testloader = torch.utils.data.DataLoader(testset, batch_size=256,
                                          shuffle=False, num_workers=2)
 
@@ -184,46 +192,46 @@ for i in range(10):
 
 '''
 ################# 200 epochs #####################
-Epoch: 10,  loss: 101.029
-Epoch: 20,  loss: 41.062
-Epoch: 30,  loss: 23.323
-Epoch: 40,  loss: 14.981
-Epoch: 50,  loss: 13.414
-Epoch: 60,  loss: 10.548
-Epoch: 70,  loss: 7.885
-Epoch: 80,  loss: 8.065
-Epoch: 90,  loss: 4.801
-Epoch: 100,  loss: 4.162
-Epoch: 110,  loss: 3.813
-Epoch: 120,  loss: 2.384
-Epoch: 130,  loss: 1.933
-Epoch: 140,  loss: 0.765
-Epoch: 150,  loss: 1.099
-Epoch: 160,  loss: 0.181
-Epoch: 170,  loss: 0.188
-Epoch: 180,  loss: 0.192
-Epoch: 190,  loss: 0.194
-Epoch: 200,  loss: 0.197
-Epoch: 210,  loss: 0.197
-Epoch: 220,  loss: 0.196
-Epoch: 230,  loss: 0.195
-Epoch: 240,  loss: 0.195
-Epoch: 250,  loss: 0.197
-Epoch: 260,  loss: 0.196
-Epoch: 270,  loss: 0.196
-Epoch: 280,  loss: 0.195
-Epoch: 290,  loss: 0.196
-Epoch: 300,  loss: 0.198
+Epoch: 10,  loss: 115.292
+Epoch: 20,  loss: 71.494
+Epoch: 30,  loss: 54.114
+Epoch: 40,  loss: 42.215
+Epoch: 50,  loss: 34.444
+Epoch: 60,  loss: 28.658
+Epoch: 70,  loss: 22.905
+Epoch: 80,  loss: 18.779
+Epoch: 90,  loss: 15.224
+Epoch: 100,  loss: 12.030
+Epoch: 110,  loss: 10.612
+Epoch: 120,  loss: 8.031
+Epoch: 130,  loss: 6.721
+Epoch: 140,  loss: 5.254
+Epoch: 150,  loss: 3.951
+Epoch: 160,  loss: 3.375
+Epoch: 170,  loss: 2.867
+Epoch: 180,  loss: 1.640
+Epoch: 190,  loss: 1.350
+Epoch: 200,  loss: 1.070
+Epoch: 210,  loss: 0.670
+Epoch: 220,  loss: 0.633
+Epoch: 230,  loss: 0.458
+Epoch: 240,  loss: 0.367
+Epoch: 250,  loss: 0.347
+Epoch: 260,  loss: 0.272
+Epoch: 270,  loss: 0.248
+Epoch: 280,  loss: 0.262
+Epoch: 290,  loss: 0.252
+Epoch: 300,  loss: 0.212
 Finished Training
-Accuracy of the network on the 10000 test images: 88.62 %
-Accuracy of plane : 93.75 %
-Accuracy of   car : 100.00 %
-Accuracy of  bird : 100.00 %
-Accuracy of   cat : 68.18 %
+Accuracy of the network on the 10000 test images: 92.41 %
+Accuracy of plane : 87.50 %
+Accuracy of   car : 92.31 %
+Accuracy of  bird : 92.31 %
+Accuracy of   cat : 81.82 %
 Accuracy of  deer : 76.92 %
 Accuracy of   dog : 73.33 %
-Accuracy of  frog : 77.78 %
-Accuracy of horse : 83.33 %
-Accuracy of  ship : 76.19 %
-Accuracy of truck : 94.12 %
+Accuracy of  frog : 83.33 %
+Accuracy of horse : 100.00 %
+Accuracy of  ship : 100.00 %
+Accuracy of truck : 100.00 %
 '''

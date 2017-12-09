@@ -7,17 +7,25 @@ import torchvision.transforms as transforms
 ########################################################################
 # 1. Loading and normalizing CIFAR10
 
-transform = transforms.Compose(
-    [transforms.ToTensor(),
-     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+transform_train = transforms.Compose([
+    transforms.RandomCrop(32, padding=4),
+    transforms.RandomHorizontalFlip(),
+    transforms.ToTensor(),
+    transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
+])
+
+transform_test = transforms.Compose([
+    transforms.ToTensor(),
+    transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
+])
 
 trainset = torchvision.datasets.CIFAR10(root='./data', train=True,
-                                        download=True, transform=transform)
+                                        download=True, transform=transform_train)
 trainloader = torch.utils.data.DataLoader(trainset, batch_size=256,
                                           shuffle=True, num_workers=2)
 
 testset = torchvision.datasets.CIFAR10(root='./data', train=False,
-                                       download=True, transform=transform)
+                                       download=True, transform=transform_test)
 testloader = torch.utils.data.DataLoader(testset, batch_size=256,
                                          shuffle=False, num_workers=2)
 
@@ -196,22 +204,21 @@ for i in range(10):
 
 
 '''
-############### using the model trained with 200 epochs ##################
-Epoch: 10,  loss: 0.211
-Epoch: 20,  loss: 0.170
-Epoch: 30,  loss: 0.160
-Epoch: 40,  loss: 0.157
-Epoch: 50,  loss: 0.155
+Epoch: 10,  loss: 0.263
+Epoch: 20,  loss: 0.195
+Epoch: 30,  loss: 0.198
+Epoch: 40,  loss: 0.189
+Epoch: 50,  loss: 0.183
 Finished Training
-Accuracy of the network on the 10000 test images: 88.57 %
-Accuracy of plane : 93.75 %
-Accuracy of   car : 100.00 %
-Accuracy of  bird : 100.00 %
-Accuracy of   cat : 68.18 %
+Accuracy of the network on the 10000 test images: 92.41 %
+Accuracy of plane : 87.50 %
+Accuracy of   car : 92.31 %
+Accuracy of  bird : 92.31 %
+Accuracy of   cat : 81.82 %
 Accuracy of  deer : 76.92 %
 Accuracy of   dog : 73.33 %
-Accuracy of  frog : 77.78 %
-Accuracy of horse : 83.33 %
-Accuracy of  ship : 80.95 %
-Accuracy of truck : 94.12 %
+Accuracy of  frog : 83.33 %
+Accuracy of horse : 100.00 %
+Accuracy of  ship : 100.00 %
+Accuracy of truck : 100.00 %
 '''

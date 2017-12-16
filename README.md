@@ -12,9 +12,9 @@ Training logs and accuracy reports are attached in the tail of the files.
 
 ### VGG-11 with 8 Conv Layers
 
-* `02_cifar10_vgg11.py`: The same as `01_cifar10_conv.py`, but use VGG11's conv layers, which have 8 conv layers. When trained 300 epochs, the accuracy is about 90.79%。
+* `02_cifar10_vgg11.py`: The same as `01_cifar10_conv.py`, but using VGG11's conv layers, which have 8 conv layers. When trained 300 epochs, the accuracy is about 90.79%。
 
-* `02_cifar10_vgg11_base.py`: The same as `01_cifar10_conv_base.py`, but using the above 8-layer conv networks as feature extractor. The accuracy is 90.73%.
+* `02_cifar10_vgg11_base.py`: The same as `01_cifar10_conv_base.py`, but using the above 8-layer conv networks as a feature extractor. The accuracy is 90.73%.
 
 ### VGG-16 with 13 Conv Layers
 
